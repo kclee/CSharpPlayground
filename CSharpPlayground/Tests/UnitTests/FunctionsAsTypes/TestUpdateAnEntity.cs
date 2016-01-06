@@ -155,5 +155,35 @@ namespace UnitTests
             { Direction.Down,  (position, distance) => { position.y -= distance; position.hunger += distance; } },
         };
 
+        public void BenchMark(int times, Action func)
+        {
+            var stopwatch = new System.Diagnostics.Stopwatch();
+            double totalTime = 0.0;
+
+            for (int i = 0; i < times; ++i)
+            {
+                stopwatch.Start();
+                func();
+                stopwatch.Stop();
+
+                totalTime += stopwatch.Elapsed.TotalMilliseconds;
+                stopwatch.Reset();
+            }
+
+            //double averageTime = totalTime / times;
+            System.Diagnostics.Debug.WriteLine("{0} ms", totalTime);
+        }
+
+        [TestMethod]
+        public void TestBenchMark()
+        {
+            System.Diagnostics.Debug.WriteLine("TestBenchMark");
+            BenchMark(1000, Move);
+            BenchMark(1000, MoveWithSwitchCase);
+            BenchMark(1000, MoveWithDelegate);
+            BenchMark(1000, MoveWithActionMap);
+            System.Diagnostics.Debug.WriteLine("TestBenchMark!");
+        }
+
     }
 }
