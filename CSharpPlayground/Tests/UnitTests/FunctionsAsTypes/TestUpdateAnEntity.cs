@@ -149,16 +149,18 @@ namespace UnitTests
         /// </summary>
         private Dictionary<Direction, Action<Entity, int>> directionMap = new Dictionary<Direction, Action<Entity, int>>
         {
-            { Direction.Left,  (position, distance) => { position.x -= distance; position.hunger += distance; } },
-            { Direction.Right, (position, distance) => { position.x += distance; position.hunger += distance; } },
-            { Direction.Up,    (position, distance) => { position.y += distance; position.hunger += distance; } },
-            { Direction.Down,  (position, distance) => { position.y -= distance; position.hunger += distance; } },
+            { Direction.Left,  (entity, distance) => { entity.x -= distance; entity.hunger += distance; } },
+            { Direction.Right, (entity, distance) => { entity.x += distance; entity.hunger += distance; } },
+            { Direction.Up,    (entity, distance) => { entity.y += distance; entity.hunger += distance; } },
+            { Direction.Down,  (entity, distance) => { entity.y -= distance; entity.hunger += distance; } },
         };
 
         public void BenchMark(int times, Action func)
         {
             var stopwatch = new System.Diagnostics.Stopwatch();
             double totalTime = 0.0;
+
+            func(); // warm up
 
             for (int i = 0; i < times; ++i)
             {
@@ -174,15 +176,25 @@ namespace UnitTests
             System.Diagnostics.Debug.WriteLine("{0} ms", totalTime);
         }
 
+        /// <summary>
+        /// Just for fun Benchmark
+        /// </summary>
         [TestMethod]
         public void TestBenchMark()
         {
-            System.Diagnostics.Debug.WriteLine("TestBenchMark");
-            BenchMark(1000, Move);
-            BenchMark(1000, MoveWithSwitchCase);
-            BenchMark(1000, MoveWithDelegate);
-            BenchMark(1000, MoveWithActionMap);
-            System.Diagnostics.Debug.WriteLine("TestBenchMark!");
+            System.Diagnostics.Debug.WriteLine("Begin TestBenchMark.");
+            BenchMark(10, Move); // warm up
+            
+            BenchMark(1000, Move);                // 0.189199999999998 ms
+            BenchMark(1000, MoveWithSwitchCase);  // 0.235199999999998 ms
+            BenchMark(1000, MoveWithDelegate);    // 0.214999999999998 ms
+            BenchMark(1000, MoveWithActionMap);   // 0.252499999999998 ms
+            System.Diagnostics.Debug.WriteLine("Done TestBenchMark!");
+
+            // Benchmark correctly is hard. So,
+            // More info on Benchmarking
+            // http://mattwarren.org/2014/09/19/the-art-of-benchmarking/
+            //
         }
 
     }
