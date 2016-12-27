@@ -36,17 +36,56 @@ namespace AdventOfCode.AdventOfCode2016
             {
                 bool atLocationVisitTwice = false;
 
+                Tuple<int, int> fromPos = Tuple.Create(X, Y);
                 UpdateFacingDirection(directionToTurn);
                 UpdateCoordinates(distance);
+                Tuple<int, int> toPos = Tuple.Create(X, Y);
 
-                foreach (var coord in Visited)
+                // Move on Y axis
+                if (fromPos.Item1.Equals(toPos.Item1))
                 {
-                    // TODO: maybe check if any coordinate visited twice
+                    int unitIncrementOnY = (toPos.Item2 - fromPos.Item2)/Math.Abs((toPos.Item2 - fromPos.Item2));
+                    int currentX = fromPos.Item1;
+                    int currentY = fromPos.Item2;
+                    
+                    while (currentY != toPos.Item2)
+                    {
+                        currentY += unitIncrementOnY;
+                        if (!Visited.Contains(Tuple.Create(currentX, currentY)))
+                        {
+                            Visited.Add(Tuple.Create(currentX, currentY));
+                        }
+                        else
+                        {
+                            X = currentX;
+                            Y = currentY;
+                            atLocationVisitTwice = true;
+                            break;
+                        }
+                    }
                 }
-
-                if (!atLocationVisitTwice)
+                // Move on X axis
+                else
                 {
-                    Visited.Add(new Tuple<int, int>(X, Y));
+                    int unitIncrementOnX = (toPos.Item1 - fromPos.Item1)/Math.Abs(toPos.Item1 - fromPos.Item1);
+                    int currentX = fromPos.Item1;
+                    int currentY = fromPos.Item2;
+                    
+                    while (currentX != toPos.Item1)
+                    {
+                        currentX += unitIncrementOnX;
+                        if (!Visited.Contains(Tuple.Create(currentX, currentY)))
+                        {
+                            Visited.Add(Tuple.Create(currentX, currentY));
+                        }
+                        else
+                        {
+                            X = currentX;
+                            Y = currentY;
+                            atLocationVisitTwice = true;
+                            break;
+                        }
+                    }
                 }
 
                 return atLocationVisitTwice;
@@ -104,7 +143,7 @@ namespace AdventOfCode.AdventOfCode2016
 
         public static void RunDay1()
         {
-            string input = input_test_1_q2;
+            string input = input_test_4;
 
             List<string> commands = new List<string>();
             foreach (var command in input.Split(','))
