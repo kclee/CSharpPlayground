@@ -11,9 +11,10 @@ namespace AdventOfCode
         static void Main(string[] args)
         {
             // Day 1
-            AdventOfCode2016.Day1.RunDay1();
+            //AdventOfCode2016.Day1.RunDay1();
 
             // Day 2
+            AdventOfCode2016.Day2.RunDay2();
         }
     }
 }

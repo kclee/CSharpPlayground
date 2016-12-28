@@ -9,13 +9,13 @@ namespace AdventOfCode.AdventOfCode2016
     class Day1
     {
         // Input for part 1
-        static readonly string input_test_1 = "R2, L3";              //  5
-        static readonly string input_test_2 = "R2, R2, R2";          //  2
-        static readonly string input_test_3 = "R5, L5, R5, R3";      // 12
+        //static readonly string input_test_1 = "R2, L3";              //  5
+        //static readonly string input_test_2 = "R2, R2, R2";          //  2
+        //static readonly string input_test_3 = "R5, L5, R5, R3";      // 12
         static readonly string input_test_4 = "R1, R1, R3, R1, R1, L2, R5, L2, R5, R1, R4, L2, R3, L3, R4, L5, R4, R4, R1, L5, L4, R5, R3, L1, R4, R3, L2, L1, R3, L4, R3, L2, R5, R190, R3, R5, L5, L1, R54, L3, L4, L1, R4, R1, R3, L1, L1, R2, L2, R2, R5, L3, R4, R76, L3, R4, R191, R5, R5, L5, L4, L5, L3, R1, R3, R2, L2, L2, L4, L5, L4, R5, R4, R4, R2, R3, R4, L3, L2, R5, R3, L2, L1, R2, L3, R2, L1, L1, R1, L3, R5, L5, L1, L2, R5, R3, L3, R3, R5, R2, R5, R5, L5, L5, R2, L3, L5, L2, L1, R2, R2, L2, R2, L3, L2, R3, L5, R4, L4, L5, R3, L4, R1, R3, R2, R4, L2, L3, R2, L5, R5, R4, L2, R4, L1, L3, L1, L3, R1, R2, R1, L5, R5, R3, L3, L3, L2, R4, R2, L5, L1, L1, L5, L4, L1, L1, R1";
 
         // Input for part 2
-        static readonly string input_test_1_q2 = "R8, R4, R4, R8";  //4
+        //static readonly string input_test_1_q2 = "R8, R4, R4, R8";  //4
 
         public static void RunDay1()
         {
