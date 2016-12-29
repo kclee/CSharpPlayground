@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace AdventOfCode.AdventOfCode2016
 {
+    //TODO: Visiualize?, and different way to check intersection in part 2
     class Day1
     {
         // Input for part 1

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace AdventOfCode.AdventOfCode2016
 {
+    //TODO: different way to handle Move or store keypad data
     class Day2
     {
         // Part 1: 1985, Part 2:
@@ -73,7 +74,7 @@ namespace AdventOfCode.AdventOfCode2016
                     Move(direction);
                 }
             }
-
+            
             private void Move(char direction)
             {
                 switch (direction)
